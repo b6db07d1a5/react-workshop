@@ -5,19 +5,18 @@ class Tank extends Component {
 
     state = {
         field: [
-            ["O" , "O", "O"],
-            ["O" , "O", "O"],
-            ["O" , "O", "O"]
+            [false , false , false ],
+            [false , false , false ],
+            [false , false , false ],
         ],
         index: {
-            x: 2,
-            y: 2
+            x: 1,
+            y: 1
         }
     }
 
     handleJoyStick = (direction, evType) => () => {
         const {x, y} = this.state.index
-        console.log(direction)
         switch(direction) {
             case 'up' :
                 this.setMove(x-1,y,evType)
@@ -38,7 +37,6 @@ class Tank extends Component {
 
     setMove = (x, y, evType) => {
         if((x < 0 || x > 3 -1) || (y < 0 || y > 3 -1)){
-            console.log('OUT')
             if(evType === 'click'){
                 this.setState({
                     index: {
@@ -53,15 +51,15 @@ class Tank extends Component {
             }
         }
         else {
-            let updatedField = this.state.field
-            updatedField[this.state.index.x][this.state.index.y] = "O"
-            updatedField[x][y] = "X"
+            let {field , index} = this.state
+            field[index.x][index.y] = false
+            field[x][y] = true
             this.setState({
                 index: {
                     x: x,
                     y: y
                 },
-                field: updatedField
+                field: field
             })
         }
     }
@@ -88,13 +86,13 @@ class Tank extends Component {
     render() {
         return (
             <div>
-                <Field field={this.state.field} randomMove={this.randomMove} />
+                <Field field={this.state.field} handleMove={this.randomMove} />
                 <div>
                     <button onClick={this.handleJoyStick('up','click')}> up </button>
                     <button onClick={this.handleJoyStick('down','click')}> down </button>
                     <button onClick={this.handleJoyStick('left','click')}> left </button>
                     <button onClick={this.handleJoyStick('right','click')}> right </button>
-                    </div>
+                </div>
             </div>
         );
     }

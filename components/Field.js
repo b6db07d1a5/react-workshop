@@ -1,26 +1,10 @@
-import React, { Component } from 'react';
-import Point from './Point'
-class Field extends Component {
-    
-    render() {
-        const { field: el, randomMove } = this.props
-        return (
-            <div>
-                {row(el[0],randomMove)}
-                {row(el[1],randomMove)}
-                {row(el[2],randomMove)}
-            </div>
-        );
-    }
-}
+import React from 'react';
+import Row from './Row'
 
-const row = (el, randomMove) => {
+const Field = ({field, handleMove}) => {
     return (
-        <div>
-            <Point letCount={el[0]} randomMove={randomMove} />
-            <Point letCount={el[1]} randomMove={randomMove} />
-            <Point letCount={el[2]} randomMove={randomMove} />
-        </div> 
+        field.map((row) => 
+            <Row rows={row} handleMove={handleMove} />)
     );
 };
 

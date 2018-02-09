@@ -6,15 +6,11 @@ class Point extends Component {
         count: 3
     }
 
-    componentDidMount() {
-
-    }
-
     componentWillReceiveProps(nextProps){
         this.setState({
             count: 3
         })
-        if(nextProps.letCount === "X"){
+        if(nextProps.letCount){
             clearInterval(this.timer)
             
             this.timer = setInterval(()=>{
@@ -24,23 +20,16 @@ class Point extends Component {
                 if(this.state.count < 1){
                     clearInterval(this.timer);
                     let ran = Math.floor((Math.random() * 4) + 1)
-                    this.props.randomMove(ran)
+                    this.props.handleMove(ran)
                 }
             }, 1000)
         }
     }
     
     render() {
-        if(this.props.letCount == "X") {
-            return (
-                <button>
-                    {this.state.count}
-                </button>
-            );
-        }
-        return(
-            <button>
-                O
+        return (
+            <button style={{width: 10, height: 10}}> 
+                {(this.props.letCount? this.state.count : false)} 
             </button>
         )
     }
