@@ -19,8 +19,7 @@ class Point extends Component {
                 })
                 if(this.state.count < 1){
                     clearInterval(this.timer);
-                    let ran = Math.floor((Math.random() * 4) + 1)
-                    this.props.handleMove(ran)
+                    this.props.handleMove()
                 }
             }, 1000)
         }

@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import Field from './Field'
 
+const DIRECTION = {
+    1: 'up',
+    2: 'down',
+    3: 'left',
+    4: 'right'
+}
+
 class Tank extends Component {
 
     state = {
@@ -46,8 +53,7 @@ class Tank extends Component {
                 })
             }
             else {
-                let ran = Math.floor((Math.random() * 4) + 1)
-                this.randomMove(ran)
+                this.randomMove()
             }
         }
         else {
@@ -64,23 +70,9 @@ class Tank extends Component {
         }
     }
 
-    randomMove = (ran) => {
-        switch(ran) {
-            case 1:
-                this.handleJoyStick('up','ran')()
-            break;
-            case 2:
-                this.handleJoyStick('down','ran')()
-            break;
-            case 3:
-                this.handleJoyStick('left','ran')()
-            break;
-            case 4:
-                this.handleJoyStick('right','ran')()
-            break;
-            default:
-            break;
-        }
+    randomMove = () => {
+        const ran = Math.floor((Math.random() * 4) + 1)
+        this.handleJoyStick(DIRECTION[ran],'ran')()
     }
     
     render() {
