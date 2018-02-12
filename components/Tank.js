@@ -43,7 +43,7 @@ class Tank extends Component {
     }
 
     setMove = (x, y, evType) => {
-        if((x < 0 || x > 3 -1) || (y < 0 || y > 3 - 1)){
+        if((x < 0 || x > 3 - 1) || (y < 0 || y > 3 - 1)){
             if(evType === 'click'){
                 this.setState({
                     index: {
@@ -57,15 +57,15 @@ class Tank extends Component {
             }
         }
         else {
-            let {field , index} = this.state
-            field[index.x][index.y] = false
-            field[x][y] = true
+            let {field: updatedField , index} = this.state
+            updatedField[index.x][index.y] = false
+            updatedField[x][y] = true
             this.setState({
                 index: {
                     x: x,
                     y: y
                 },
-                field: field
+                field: updatedField
             })
         }
     }
