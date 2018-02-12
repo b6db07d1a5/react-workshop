@@ -3,23 +3,24 @@ import React, { Component } from 'react';
 class Point extends Component {
 
     state = {
-        count: 3
+        countNumber: 3
     }
 
     componentWillReceiveProps(nextProps){
         this.setState({
-            count: 3
+            countNumber: 3
         })
-        if(nextProps.letCount){
-            clearInterval(this.timer)
+        if(nextProps.count){
+            clearInterval(timer)
             
-            this.timer = setInterval(()=>{
+            let counterInterval = 3
+            let timer = setInterval(()=>{
                 this.setState({
-                    count: this.state.count - 1
+                    countNumber: this.state.countNumber - 1
                 })
-                if(this.state.count < 1){
-                    clearInterval(this.timer);
-                    this.props.handleMove()
+                if(this.state.countNumber < 1){
+                    clearInterval(timer);
+                    this.props.randomMove()
                 }
             }, 1000)
         }
@@ -28,7 +29,7 @@ class Point extends Component {
     render() {
         return (
             <button style={{width: 10, height: 10}}> 
-                {(this.props.letCount? this.state.count : false)} 
+                {(this.props.count? this.state.countNumber : false)} 
             </button>
         )
     }

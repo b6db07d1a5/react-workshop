@@ -43,7 +43,7 @@ class Tank extends Component {
     }
 
     setMove = (x, y, evType) => {
-        if((x < 0 || x > 3 -1) || (y < 0 || y > 3 -1)){
+        if((x < 0 || x > 3 -1) || (y < 0 || y > 3 - 1)){
             if(evType === 'click'){
                 this.setState({
                     index: {
@@ -78,7 +78,7 @@ class Tank extends Component {
     render() {
         return (
             <div>
-                <Field field={this.state.field} handleMove={this.randomMove} />
+                <Field field={this.state.field} randomMove={this.randomMove} />
                 <div>
                     <button onClick={this.handleJoyStick('up','click')}> up </button>
                     <button onClick={this.handleJoyStick('down','click')}> down </button>
