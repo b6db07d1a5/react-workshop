@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Field from './Field'
+import Field from './Field';
 
 const DIRECTION = {
     1: 'up',
